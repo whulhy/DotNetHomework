@@ -1,0 +1,11 @@
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-2ccccccc.exe.config
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-2ccccccc.exe
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-2ccccccc.pdb
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-1.exe
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-1.pdb
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\bin\Debug\Homework3-1.exe.config
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\obj\Debug\Homework3-2.csprojAssemblyReference.cache
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\obj\Debug\Homework3-2.csproj.CoreCompileInputs.cache
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\obj\Debug\Homework3-2.csproj.CopyComplete
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\obj\Debug\Homework3-2ccccccc.exe
+C:\Users\lhy\Desktop\Homework3\Homework3-2ccccccc\obj\Debug\Homework3-2ccccccc.pdb
