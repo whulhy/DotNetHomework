@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 namespace Homework4_2
 {
     public delegate void Tick(object sender);
-    public delegate void BellTime(object sender, clockTime args);
-    public class clockTime
+   // public delegate void BellTime(object sender, clockTime args);
+   /* public class clockTime
     {
         public int hour { get; set; }
         public int minute { get; set; }
         public int seconds { get; set; }
-    }
+    }*/
     public class Clock
     {
         public event Tick onTick;
-        public event BellTime setBell;
+        //public event BellTime setBell;
         public void Start()
         {
             onTick(this);
