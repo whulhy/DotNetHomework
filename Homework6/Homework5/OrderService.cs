@@ -115,19 +115,19 @@ namespace Homework5
             return list;
         }
         
-        public void Exports()
+        public void Exports(string a)
         {
-            using (FileStream fileStream = new FileStream("s.xml", FileMode.Create))
+            using (FileStream fileStream = new FileStream(a, FileMode.Create))
             {
                 xmlSerializer.Serialize(fileStream, order);
             }
             Console.WriteLine("序列化完成");
             Console.WriteLine(File.ReadAllText("s.xml"));
         }
-        public string  Imports()
+        public string  Imports(string b)
         {
             string a = "";
-            using (FileStream fs = new FileStream("s.xml", FileMode.Open))
+            using (FileStream fs = new FileStream(b, FileMode.Open))
             {
                 Console.WriteLine("反序列化");
                 List<Order> orders = (List<Order>)xmlSerializer.Deserialize(fs);

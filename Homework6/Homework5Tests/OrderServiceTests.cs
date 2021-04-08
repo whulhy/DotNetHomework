@@ -110,8 +110,9 @@ namespace Homework5.Tests
             OrderService service = new OrderService();
             Order order1 = new Order(0, "Person", "12:00", "Any");
             service.AddItems(order1);
-            service.Exports();
-            string a = service.Imports();
+            service.Exports("s.xml");
+            //string b = service.Imports("b.xml"); 
+            string a = service.Imports("s.xml");
             Assert.AreEqual(a, order1.ToString());
           
         }

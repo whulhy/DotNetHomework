@@ -55,8 +55,8 @@ namespace Homework5
             p1.OrderAddress = "武汉大学信息学部";
             p1.orderDe[0].Num = 2; p1.orderDe[1].Num = 2;
             Console.WriteLine(service.ToString());*/
-            service.Exports();
-            Console.WriteLine( service.Imports()); 
+            service.Exports("s.xml");
+            Console.WriteLine( service.Imports("s.xml")); 
         }
     }
 }
