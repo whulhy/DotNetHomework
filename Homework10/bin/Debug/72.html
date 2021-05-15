@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="description" content="Eureka是Netflix开发的服务发现框架，下面我们通过eureka的源码来剖析其原理" />
+    <meta property="og:description" content="Eureka是Netflix开发的服务发现框架，下面我们通过eureka的源码来剖析其原理" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Eureka原理剖析 - vchar_fred - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=zS6-e1bxywlu3kpHvpr1J6MySwya3ztFtEnS7RYQ0Fk" />
+    <link id="MainCss" rel="stylesheet" href="/skins/codinglife/bundle-codinglife.min.css?v=2uJkpdACLVfstRQ7zeCFK19brTwKuDEaNBLgKz9nm3A" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/vchar/custom.css?v=u0tbXka3dlm2sOqhiUpbms1oXI0=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/codinglife/bundle-codinglife-mobile.min.css?v=DwDRKMd1bmjnJZ4iQqrTCO9QLlYb6OZaUAzHoHIIihg" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/vchar/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/vchar/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/vchar/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 575303;
+        var currentBlogApp = 'vchar';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'CodingLife';
+        var visitorUserId = '';
+    </script>
+        <script>
+            var currentPostDateAdded = '2021-05-06 03:01';
+        </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=yJQaJ16S00coMfzvh-NgF2zm2J87f5VfNamFdsnKHrc"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/vchar/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/vchar/">起岸星辰</a>
+</h1>
+<h2>微信搜一搜【起岸星辰】快速了解最新IT业界资讯，掌握技术实战技能。</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/vchar/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/vchar_fred">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/vchar/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class = "postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/vchar/p/14735229.html">
+    <span>Eureka原理剖析</span>
+    
+
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                    <div id="cnblogs_post_description" style="display: none">
+        Eureka是Netflix开发的服务发现框架，下面我们通过eureka的源码来剖析其原理
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<p>Eureka作为微服务中的注册中心，为微服务集群间各个服务进行调用提供寻址的功能，有了它集群间的服务只需要指定服务名称就可以了，无需再去关心服务具体部署的服务器IP，即可正常调用。下面来对其中我们开发中会接触的主要机制的实现原理进行剖析。一些具体细节这里不做详细的分析，只关注如下2个大方向的东西：1.注册相关的机制、2.客户端和服务端的启动流程。</p>
+<h2 id="eureka服务端启动流程">Eureka服务端启动流程</h2>
+<p>首先需要说明的是eureka server(后面简称服务端)是在eureka client(后面简称客户端)的基础上进一步封装的一个东西；也就是说客户端有的东西服务端也有。服务端额外多的东西就是对注册表的处理部分。它的启动流程如下：</p>
+<ul>
+<li>初始化环境配置；这个我们在日常开发中几乎都是使用的默认的；</li>
+<li>读取服务端的配置信息，也就是读取eureka-server.properties配置文件；由于eureka中对这种配置类采用的是面向接口的方式，因此非常好扩展，在spring中是重新实现了这些配置类接口的。</li>
+<li>构建应用管理器；读取eureka-client.properties配置文件，选择其中的部分配置，基于构造者模式创建服务实例交给应用管理器。</li>
+<li>读取eureka-client.properties配置文件构建客户端信息；这里的操作和客户端的启动流程几乎就是一样的，因此这里就不做详细说明了。</li>
+<li>创建注册表感知器registry，这个也可以称为注册表管理器。这里会维护注册表信息。</li>
+<li>创建服务端集群节点信息管理器；也就是我们配置的集群地址信息，默认10分钟检查一次。</li>
+<li>基于上面的信息创建服务端的上下文信息；这里在进行初始化的时候会对相关资源进行初始化；启动相关的定时。</li>
+<li>从其他服务端节点上拉取注册表信息；这就是为什么服务端即使配置fetchRegistry为false，依然可以正常拿到注册表信息。</li>
+<li>启动注册表感知器registry的定时；这个定时主要就是检查注册表中是否有过期的注册信息。</li>
+<li>最后进行监听器的绑定。</li>
+</ul>
+<p>相关的流程图如下：<br>
+<img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145723035-286411823.png" alt="" loading="lazy"></p>
+<h2 id="eureka客户端启动流程">Eureka客户端启动流程</h2>
+<p>eureka客户端的启动主要就是几个定时和之后进行注册表维护的网络请求资源初始化。</p>
+<ul>
+<li>构建应用管理器；读取eureka-client.properties配置文件，选择其中的部分配置，基于构造者模式创建服务实例交给应用管理器。</li>
+<li>读取eureka-client.properties配置信息构建客户端的配置信息；</li>
+<li>根据上面的配置信息和应用管理器构建客户端；</li>
+<li>创建心跳、缓存等需要的线程池；</li>
+<li>创建网络通信组件；后面发送注册信息、心跳信息这些请求都是通过它来处理的；</li>
+<li>判断是否需要拉取注册表信息，若是则会全量拉取一次注册表信息；</li>
+<li>启动相关的定时任务：注册表更新任务(默认30s执行一次)、心跳定时任务(默认30s执行一次)、创建服务状态更新定时任务(默认30s执行一次，这个就是留个我们自定义服务上下线状态的判断逻辑的)；</li>
+<li>启动服务状态更新定时任务（第一次延迟40s执行）；这里面就是向服务端发送注册信息的实现。</li>
+<li>最后进行监听器的绑定。</li>
+</ul>
+<p>相关的流程图如下：<br>
+<img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145740531-2035853429.png" alt="" loading="lazy"></p>
+<h2 id="eureka注册表的原理">Eureka注册表的原理</h2>
+<p>eureka的注册表中保存中服务的注册信息，下面我们通过如下几个点来对其原理进行简析。</p>
+<h3 id="注册表抓取和缓存机制">注册表抓取和缓存机制</h3>
+<p>其基本流程图如下：<br>
+<img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145757152-272225788.png" alt="" loading="lazy"></p>
+<h4 id="注册表的数据结构和缓存机制">注册表的数据结构和缓存机制</h4>
+<p>eureka server中对注册表的信息进行多重缓存，分为：</p>
+<ul>
+<li>只读缓存（ConcurrentMap）：会有定时任务默认每隔30s主动的去和读写缓存里面的信息同步一次；</li>
+<li>读写缓存(guava的LoadingCache)：在创建LoadingCache的时候默认设置的过期时间是180s；</li>
+<li>注册表：这个就是实时的本地注册信息，每次客户端的注册信息更新后，都会实时的保存在这里；同时在更新它的时候会将读写缓存中的值设置为失效状态。</li>
+</ul>
+<h4 id="注册表信息读取流程">注册表信息读取流程</h4>
+<p>注册表的拉取分为全量和增量；在初次拉取时使用的是全量，后面使用的都是增量拉取的。</p>
+<p>全量拉取流程：</p>
+<ul>
+<li>服务端收到客户端的请求后，会直接从只读缓存里面取值，如果有就返回，否则进行下一步；</li>
+<li>只读缓存里面没有时，会从读写缓存里面取值，如果有就返回，同时将其设置达到只读缓存里面；否则进行下一步；</li>
+<li>读写缓存里面没有时，会触发LoadingCache的load方法，这里面会从本地注册表中取值返回。</li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145810436-594136727.png" alt="" loading="lazy"></p>
+<p>增量拉取流程：</p>
+<ul>
+<li>服务端收到客户端的请求后，会直接从只读缓存里面取增量信息，如果有就返回，否则进行下一步；</li>
+<li>只读缓存里面没有时，会从读写缓存里面取增量信息，如果有就返回，同时将其设置达到只读缓存里面；否则进行下一步；</li>
+<li>读写缓存里面没有时，会触发LoadingCache的load方法，这里面会增量队列中获取变化的信息然后返回；</li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145824012-1696636867.png" alt="" loading="lazy"></p>
+<h3 id="服务端集群间的注册信息如何同步的">服务端集群间的注册信息如何同步的</h3>
+<p>要回答这个问题，我们就需要先了解客户端发送注册信息和心跳信息的整个流程，看了下面的注册和心跳流程这个问题也就可以解释了。</p>
+<p>注册的流程来说明：</p>
+<ul>
+<li>客户端在启动的最后一步启动服务状态更新定时任务时，里面的定时任务就会向服务端发送注册信息；</li>
+<li>客户端会选从置的服务服务注册地址中选择第一个进行尝试，如果成功后面都会用这个，直到失败才会切换到下一个；</li>
+<li>服务端收到注册请求后，更新本地注册表中注册信息，将读写缓存中的缓存设置为失效状态；同时将注册表的变更信息保存到最近变更队列中；</li>
+<li>将注册请求信息转发给eureka server集群中的其他节点。</li>
+</ul>
+<blockquote>
+<p>心跳的请求也是在服务端自己处理完成后，会自动将这个请求转发给集群中的其他节点。心跳的操作就是更新注册信息中的租约时间，这里就不详细说明了。</p>
+<p>注意这种通知集群中其他节点的操作在失败后会不断的重试，同时正式由于有这个操作，因此服务端的fetchRegistry配置为false，集群间的注册信息依然可以正常同步的原因。</p>
+</blockquote>
+<h3 id="客户端的注册信息什么时候会被摘除">客户端的注册信息什么时候会被摘除</h3>
+<p>客户端的注册信息被摘除主要是这2种情况：1.客户端服务主动下线；2.服务异常。</p>
+<h4 id="客户端服务主动下线">客户端服务主动下线</h4>
+<p>客户端服务下线：主动取消注册信息，这种服务端直接接收请求然后删除即可；其流程图如下：<br>
+<img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145841941-992857768.png" alt="" loading="lazy"></p>
+<h4 id="服务异常">服务异常</h4>
+<p>客户端异常：没有发送取消请求或者是服务端没有正常接收和处理取消请求的情况下，此时就需要服务端自己定制一套注册信息过期机制，这也就是发送心跳的作用。</p>
+<p>服务端中注册表信息过期检查的定时任务默认每隔60s检查一次，其大致流程如下：</p>
+<ul>
+<li>判断的过期的依据是：当前时间戳 &gt; (上一次发送租约的时间戳 + 过期时间（默认90s） + 补充时间(就是距离上一次执行任务的时间超过定时任务配置的60s执行一次的周期时间))；但是由于在设置上一次发送租约的时间戳时候额外加上了一个过期时间；因此最终注册表的过期时间就至少是180s。</li>
+<li>选择15%的过期注册信息，然后调用取消操作来删除注册信息；同时会通知集群中其他的节点。</li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1929453/202105/1929453-20210506145855641-158362944.png" alt="" loading="lazy"></p>
+<h2 id="eureka源码阅读建议">Eureka源码阅读建议</h2>
+<p>spring-cloud-eureka中的server和client是对netflix的eureka进行了封装，加了一些注解来对spring boot进行支持。因此在阅读eureka源码时，应该先从netflix eureka开始看起，之后再去查看spring cloud封装的eureka的源码就会轻松许多。eureka源码地址：<a href="https://github.com/Netflix/eureka" target="_blank">https://github.com/Netflix/eureka</a> 、spring-cloud-eureka源码地址：<a href="https://github.com/spring-cloud/spring-cloud-netflix" target="_blank">https://github.com/spring-cloud/spring-cloud-netflix</a> 。</p>
+<blockquote>
+<p>建议不要直接从github仓库里面去拉取，直接去下载对应版本的压缩包即可。</p>
+</blockquote>
+<p>网上对eureka源码分析的文章有很多，这里推荐2篇写得非常不错的博文：</p>
+<ul>
+<li><a href="https://juejin.cn/post/6904888785616502798" target="_blank">Spring Cloud - Eureka 原理解析</a></li>
+<li><a href="https://juejin.cn/post/6926395503265447949" target="_blank">Spring Cloud 基本组件总结</a></li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1929453/202101/1929453-20210129213155475-411555664.png" alt="" loading="lazy"></p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2021-05-06 15:01</span>&nbsp;
+<a href="https://www.cnblogs.com/vchar/">vchar_fred</a>&nbsp;
+阅读(<span id="post_view_count">92</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14735229" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(14735229);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="https://common.cnblogs.com/highlight/10.3.1/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 575303, cb_blogApp = 'vchar', cb_blogUserGuid = 'b7d15fa9-a212-4a92-f288-08d7a00dc721';
+    var cb_entryId = 14735229, cb_entryCreatedDate = '2021-05-06 15:01', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id='div-gpt-ad-1592365906576-0' style='width: 300px; height: 250px;'></div>
+    </div>
+    <div id="under_post_card1"></div>
+    <div id="cnblogs_c2" class="under-post-card">
+        <div id='div-gpt-ad-1592366332455-0' style='width: 468px; height: 60px;'></div>
+    </div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+       deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+       loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright &copy; 2021 vchar_fred
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjvsNL3xMGsh14b2XpJzJXPqSwgl4lCVQ1hvCoPaTVgMAQBOKotjctJtNPpi-o2bbdTGR91vS0Y2C1-5EEhPrv4E2dDXEe-xPeFW1bR8A8D0w8zArUe5JGkcVIyvQlwuFhg" />
+</body>
+</html>

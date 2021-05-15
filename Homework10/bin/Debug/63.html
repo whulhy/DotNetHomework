@@ -1,0 +1,1024 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-crossorigin" />
+    
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>我叫平沢唯 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=zS6-e1bxywlu3kpHvpr1J6MySwya3ztFtEnS7RYQ0Fk" />
+    <link id="MainCss" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright.min.css?v=00nt3ajQUVX0gvFynxRY-4TOqQaW32yFChuBOrvOqLk" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/QiQi-Robotics/custom.css?v=3imM5TxIBOhvbYkwPOPly9oBVdg=" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/lessismoreright/bundle-lessismoreright-mobile.min.css?v=cSBXSFXCBG9KdnF2sdUs-Rwu75GHG2_Gs50OCy_ecGg" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/QiQi-Robotics/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/QiQi-Robotics/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/QiQi-Robotics/wlwmanifest.xml" />
+    <script>
+        var currentBlogId = 626571;
+        var currentBlogApp = 'QiQi-Robotics';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'LessIsMoreRight';
+        var visitorUserId = '';
+    </script>
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=yJQaJ16S00coMfzvh-NgF2zm2J87f5VfNamFdsnKHrc"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="https://mathjax.cnblogs.com/2_7_5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;v=20200504"></script>
+    
+</head>
+<body class="no-navbar">
+    <a name="top"></a>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM" alt="博客园Logo" /></a></li>
+                <li><a href="/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="ga('send', 'event', 'Link', 'click', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3" />
+                        <button type="submit" id="zzk_search_button">
+                            <img src="/images/aggsite/search.svg" alt="搜索" />
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="/images/aggsite/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="/images/aggsite/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="/images/aggsite/message.svg?v=J0WS2P2iPgaIVgXxcAhliw4AFZIpaTWxtdoNAv9eiCA" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="/images/aggsite/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="/images/lite-mode-check.svg" class="hide" /><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        
+
+    </div>
+    <div id="home">
+    <div id="header">
+        <div id="blogTitle">
+            <div class="title"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/QiQi-Robotics/"><div style="font-size: 20px; color: rgba(0, 0, 0, 1); font-family: 微软雅黑; font-weight: bold">我叫平沢唯</div> </a>
+</div>
+<div class="subtitle"><div style="font-weight: bold; font-size: 15px; font-family: 微软雅黑; color: rgba(0, 0, 0, 0.6)">我老婆呆唯实在是太可爱了(●'◡'●) 【Robotics &amp; Mechatronics】【qi.shield95@foxmail.com】<a href="https://home.cnblogs.com/u/QiQi-Robotics/">关注我 一键三连</a></div></div>
+
+        </div>
+        <div id="navigator">
+            
+<ul id="navList">
+    <li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li id="nav_myhome">
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/QiQi-Robotics/">
+首页</a>
+</li>
+    <li id="nav_newpost">
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li id="nav_contact">
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E6%88%91%E5%8F%AB%E5%B9%B3%E6%B2%A2%E5%94%AF">
+联系</a></li>
+    <li id="nav_rss">
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/QiQi-Robotics/rss/">
+订阅</a></li>
+    <li id="nav_admin">
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+            <div class="blogStats">
+                <div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+                
+
+
+
+
+
+
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2021/05/06.html">2021年5月6日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14735699.html">
+    <span>
+        数据分析处理之PCA OLSR PCR PLSR(NIPALS)及其Matlab代码实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：传统的OLS(普通最小二乘)方法无法解决样本数据的共线性(multicollinearity)问题，如果你的数据样本中每个特征变量具有共线性，那么使用基于PCA的PCR和PLSR方法对数据样本进行回归建立模型将会是一个不错的选择。PCA是一种数据降维方式，但同时保持了原始数据降维后的特性；PCR是在        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14735699.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-05-06 16:20
+我叫平沢唯
+<span data-post-id="14735699" class="post-view-count">阅读(30)</span> 
+<span data-post-id="14735699" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14735699" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14735699" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2021/04/06.html">2021年4月6日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14621661.html">
+    <span>
+        基于IMU与磁力计的手势提取手套-原理及其实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：手势提取依据所采用传感器的不同，可以分为基于视觉，基于惯性传感器，基于FSR，基于EMG传感器的方法。其中基于视觉的方法使用场景有限，且无法获取精确的手指关节角度；基于FSR的方法难以布置传感器且难以获取手指基关节的横向转动角位置；基于EMG的传感器目前来看仅仅纯在于医疗和实验场景中，日常功能性使用        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14621661.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-04-06 14:19
+我叫平沢唯
+<span data-post-id="14621661" class="post-view-count">阅读(85)</span> 
+<span data-post-id="14621661" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14621661" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14621661" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2021/03/21.html">2021年3月21日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14562475.html">
+    <span>
+        通过空间角速度积分更新旋转矩阵及四元数的公式推导
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：最近开始着手做硕士毕设课题，需要用到IMU采集姿态信息用以提取手势，本着亲身实践的目的，我决定自己写算法实现姿态的融合，由于IMU运动过程中的加速度计输出叠加了非重力项，然后这就必然绕不开使用原始传感器的角速度数据来对姿态进行积分运算。 这里值得一提的是，看到网络上好多博客的做法都是对单个欧拉角直接        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14562475.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-03-21 10:54
+我叫平沢唯
+<span data-post-id="14562475" class="post-view-count">阅读(65)</span> 
+<span data-post-id="14562475" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14562475" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14562475" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2021/03/11.html">2021年3月11日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14515877.html">
+    <span>
+        基于FOC伺服电机驱动的Parallel Scara Robot的设计及实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：上个学期做了一个BLDC的FOC驱动后，我便开始了基于此类电机驱动的机器人项目尝试。之前想做的是串联机械臂，奈何找不到合适的电机并且串联机械臂十分需要减速机，使得项目对于我来说（经济方面）很艰难，恰巧又在Youtube上看到很多做并联机器人的视频,就算没有减速机也能做到不错的效果，于是便开始了Par        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14515877.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-03-11 10:31
+我叫平沢唯
+<span data-post-id="14515877" class="post-view-count">阅读(82)</span> 
+<span data-post-id="14515877" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14515877" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14515877" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2021/01/20.html">2021年1月20日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14303718.html">
+    <span>
+        多维数据处理之主成分分析(PCA)
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：在灵巧手与假手理论中，为了研究人手的运动协同关系，需要采集各个关节的运动学量或者多个采集点的肌电信号，然而由于人手关节数目或者EMG采集点数量较多，加上多次采样，导致需要过多的数据需要处理。然而事实上，这些数据存在相关性，换一种说法就是人手的某一运动被这些数据重复表达了，为了简化数据维度并尽可能的表        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14303718.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2021-01-20 18:08
+我叫平沢唯
+<span data-post-id="14303718" class="post-view-count">阅读(152)</span> 
+<span data-post-id="14303718" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14303718" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14303718" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2020/12/13.html">2020年12月13日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/14128022.html">
+    <span>
+        关于阻抗控制及其实验
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：1. 概念 阻抗控制分为基于力的阻抗控制和基于位置的阻抗控制，另一种说法是阻抗控制和导纳控制。两者都是做柔顺控制的常用方法。导纳控制，位置内环，通过检测外部力产生位置修正量，阻抗控制，力内环，通过检测位移变化，产生相应的阻抗力，两者都可以表现为柔顺性，但导纳控制更易实验，详细诸位可以去知网查阅相关硕        <a href="https://www.cnblogs.com/QiQi-Robotics/p/14128022.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-12-13 10:44
+我叫平沢唯
+<span data-post-id="14128022" class="post-view-count">阅读(314)</span> 
+<span data-post-id="14128022" class="post-comment-count">评论(0)</span> 
+<span data-post-id="14128022" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=14128022" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2020/10/09.html">2020年10月9日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13787825.html">
+    <span>
+        BLDC有感FOC算法理论及其STM32软硬件实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：位置传感器：旋转编码器 MCU：STM32F405RGT6 功率MOS驱动芯片：DRV8301 全文均假设在无弱磁控制的情况下 FOC算法理论 首先，我们要知道FOC是用来干什么的？有什么用？相比于BLDC的六步方波驱动有什么优点？ 传统的六步方波驱动由于产生的磁场旋转运动不连续，导致电机转子受的驱        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13787825.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-10-09 20:08
+我叫平沢唯
+<span data-post-id="13787825" class="post-view-count">阅读(766)</span> 
+<span data-post-id="13787825" class="post-comment-count">评论(2)</span> 
+<span data-post-id="13787825" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13787825" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+    
+
+
+<div class="day">
+    <div class="dayTitle">
+        <a href="https://www.cnblogs.com/QiQi-Robotics/archive/2020/08/27.html">2020年8月27日</a>
+    </div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569810.html">
+    <span>
+        多指灵巧手MoveIt!与Gazebo联合仿真框架搭建
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：至于为什么叫框架，一是因为灵巧手的3维模型没有按照基本的设计要求画，正常来说，设计机器人机构之前应该设计好机构需要多少个自由度/DOF，每个自由度是旋转/revolute类型还是滑移/prismatic类型，各个关节的自由度限位/limits，各个连杆的长度/a，每个自由度之间的扭角/α，偏移/d，        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569810.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 10:06
+我叫平沢唯
+<span data-post-id="13569810" class="post-view-count">阅读(353)</span> 
+<span data-post-id="13569810" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569810" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569810" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569765.html">
+    <span>
+        HIT手 | 机械电气构造简述和微分运动学及静力学的简单推导
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：机械结构电气构造简述 HIT手有四个手指，每个手指4个关节，其中第一和第二个关节正交，第三和第四个关节机械耦合，故只有3个自由度，另外大拇指多了一个相对手掌运动的自由度，故一只手掌总共有13各个自由度。 第一和第二个轴是通过两个BLDC/无刷直流电机带动两个锥齿轮驱动差动轮系，通过两个电机的正反转实        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569765.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 10:00
+我叫平沢唯
+<span data-post-id="13569765" class="post-view-count">阅读(105)</span> 
+<span data-post-id="13569765" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569765" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569765" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569747.html">
+    <span>
+        多指手抓取静力学及抓取约束与特性
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：多指手，或者说灵巧手，往简单来说是由n台机械臂通过协同合作来完成特定任务的一种耦合系统。只不过这里的机械臂为了极大的缩小体积，选用了微型驱动装置或者说是将驱动装置外置的方式。 多指手抓取分为强力抓取（power grasp，或称手掌抓取）和精确抓取（precision grasp，或称指尖抓取），强        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569747.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:58
+我叫平沢唯
+<span data-post-id="13569747" class="post-view-count">阅读(107)</span> 
+<span data-post-id="13569747" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569747" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569747" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569703.html">
+    <span>
+        SLAM导航及控制部分，源码公布
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：欢迎Fork，觉得不错就点个小星星吧 ROS源码 https://github.com/ShieldQiQi/TX2_StereoSLAM STM32驱动板源码 https://github.com/ShieldQiQi/SLAM-Robot-DriverBoard 没有关注专栏的朋友，想了解详细的        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569703.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:51
+我叫平沢唯
+<span data-post-id="13569703" class="post-view-count">阅读(163)</span> 
+<span data-post-id="13569703" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569703" class="post-digg-count">推荐(1)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569703" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569678.html">
+    <span>
+        软件篇-06-SLAM小车Self Navigation
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：当SLAM小车能够以较高的精度运动到人为设置的目标点时，下一步就是把SLAM小车放到一个陌生的环境中，让它自己建图了。为什么？因为它已经是一只成熟的SLAM小车了。 我这里写的比较简单，刚写还没几天，不是很完善，但是实际测试了一下感觉还行，原理如下图： 类似雷达发射射线，获取前方各个方向能够前进的最        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569678.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:48
+我叫平沢唯
+<span data-post-id="13569678" class="post-view-count">阅读(133)</span> 
+<span data-post-id="13569678" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569678" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569678" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569651.html">
+    <span>
+        软件篇-05-融合ORB_SLAM2和IMU闭环控制SLAM底盘运动轨迹
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：前面我们已经得到了当前底盘在世界坐标系中的位姿，这个位姿是通过融合ORB_SLAM2位姿和IMU积分得到的，在当前位姿已知的case下，给SLAM小车设置一个goal，我这里是通过上位机设置，然后使用上篇文章中的轨迹规划方法就可以得到一个路径Queue。 依次执行这个队列里的离散点，就可以到达设置的        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569651.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:43
+我叫平沢唯
+<span data-post-id="13569651" class="post-view-count">阅读(254)</span> 
+<span data-post-id="13569651" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569651" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569651" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569632.html">
+    <span>
+        软件篇-04-OMPL和FCL用于SLAM轨迹规划
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：使用OMPL内置的infoRRTstar算法模块和FCL碰撞检测库实现当前点和目标点的轨迹规划， 参考文章：https://www.cnblogs.com/shhu1993/p/7062099.html 因为我们的SLAM底盘轨迹是二维的，这样说可能不太准确，你可以说它的轨迹在给定小的区域内是二维的        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569632.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:40
+我叫平沢唯
+<span data-post-id="13569632" class="post-view-count">阅读(475)</span> 
+<span data-post-id="13569632" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569632" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569632" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569601.html">
+    <span>
+        硬件篇-04-SLAM移动底盘机械设计
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：这篇比较水，发出来主要是为了呼应专栏主题，既然是实现，那各个方面都得讲一下不是。 底盘SW模型 淘的，主要是看上了它有弹簧阻尼器，适合野外，抗震，但是这种底盘结构转向起来比较吃力。是再有个全轮转向那就无敌了，没有概念？那就想象一下电影《流浪地球》里运火石的车，它就是全轮原地转向滴。貌似美国的火星车也        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569601.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:35
+我叫平沢唯
+<span data-post-id="13569601" class="post-view-count">阅读(173)</span> 
+<span data-post-id="13569601" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569601" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569601" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569589.html">
+    <span>
+        硬件篇-03-SLAM移动底盘电气设计
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：最近因为在忙毕设，专栏已经1个多月没更，对于托更我很抱歉。不过这几周真的没什么时间，Rick&amp;Morty的最新集我到现在都还没看哈哈。 现在毕设已经搞得差不多了，水专栏文章的快乐生活就要开始了。这篇主要讲设计SLAM小车的控制板相关，偏硬件单片机和电气设计，不感兴趣的同学可以自行略过。 因为我的SL        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569589.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:33
+我叫平沢唯
+<span data-post-id="13569589" class="post-view-count">阅读(77)</span> 
+<span data-post-id="13569589" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569589" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569589" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569569.html">
+    <span>
+        软件篇-03-基于ORB_SLAM2手写SLAM稠密地图构建实现
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：本文使用的方法不是从内部修改ORBSLAM2源码以获取稠密点云，而是先从ZED2 sdk获取以摄像头坐标系为描述的三维点云/作为点云地图的一个子集，然后融合IMU与ORB_SLAM2进行实时定位，通过点云滤波，点云融合建图。 以上是在室内实验的demo，由于是纯双目，没有深度传感器，在白墙和地板上有        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569569.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:29
+我叫平沢唯
+<span data-post-id="13569569" class="post-view-count">阅读(852)</span> 
+<span data-post-id="13569569" class="post-comment-count">评论(4)</span> 
+<span data-post-id="13569569" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569569" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569508.html">
+    <span>
+        软件篇-02-基于ZED 2和ORB_SLAM2的SLAM实践
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：时隔两周，我又回来了。 ​ 本期内容如题，ZED 2的SDK功能还是挺多的，包括轨迹跟踪，实时建图等等。虽然由于是商业产品，我看不到他们的源代码，但是根据使用情况来看，ZED 2内部是采用了IMU和光学信息融合的算法，并且IMU的数据在决策权重上占了更大的比例，至于为什么我会在后文讲到。关于ORB_        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569508.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:18
+我叫平沢唯
+<span data-post-id="13569508" class="post-view-count">阅读(417)</span> 
+<span data-post-id="13569508" class="post-comment-count">评论(2)</span> 
+<span data-post-id="13569508" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569508" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569425.html">
+    <span>
+        软件篇-01-为Jetson TX2扫清科研的障碍
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：建议用vryL，GUI界面，功能更全，支持订阅。 https://github.com/ShieldQiQi/vryL​github.com 下面的内容不用看了，除非你更喜欢命令行界面。 To remove all barriers in the way of science 很喜欢Sci-Hub的        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569425.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 09:00
+我叫平沢唯
+<span data-post-id="13569425" class="post-view-count">阅读(70)</span> 
+<span data-post-id="13569425" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569425" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569425" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569375.html">
+    <span>
+        硬件篇-02-TX2刷机Jetpack4.3
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：Jetson TX2收货将近一周了，期间趁摄像头还没到，预先给TX2配置了环境。由于学校要求写毕设日志，故干脆一起在知乎写了，顺带帮助想要给TX2配环境却苦于网络上关于TX2的教程很少的同学。 本期内容是关于TX2刷机Jetpack4.3 (Ubuntu18.04) 的过程以及细节，其它软件如ROS        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569375.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 08:45
+我叫平沢唯
+<span data-post-id="13569375" class="post-view-count">阅读(88)</span> 
+<span data-post-id="13569375" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569375" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569375" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+            <div class="postSeparator"></div>
+        <div class="postTitle">
+            
+
+<a class="postTitle2 vertical-middle" href="https://www.cnblogs.com/QiQi-Robotics/p/13569360.html">
+    <span>
+        硬件篇-01-嵌入式系统主机选取
+    </span>
+    
+
+
+
+</a>
+
+        </div>
+        <div class="postCon">
+            
+
+    <div class="c_b_p_desc">
+摘要：可以作为嵌入式系统主机的选择有很多，从火到现在的树莓派，偶尔从别人口中听到的香蕉派，到Nvidia公司的Jetson系列，国产的友善电子系列等，甚至之前专注做Cortex M系列的野火、正点原子都有开发自己的嵌入式Linux系统板。 那么在特定的工程要求下该如何选择呢？以下我会从价格、功耗、体积、技        <a href="https://www.cnblogs.com/QiQi-Robotics/p/13569360.html" class="c_b_p_desc_readmore">阅读全文</a>
+    </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="postDesc">
+            posted @ 2020-08-27 08:39
+我叫平沢唯
+<span data-post-id="13569360" class="post-view-count">阅读(33)</span> 
+<span data-post-id="13569360" class="post-comment-count">评论(0)</span> 
+<span data-post-id="13569360" class="post-digg-count">推荐(0)</span> 
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=13569360" rel="nofollow">
+    编辑
+</a>
+
+        </div>
+        <div class="clear"></div>
+</div>
+
+<div class="topicListFooter">
+    <div id="nav_next_page">
+        
+    
+
+    </div>    
+</div>
+
+
+
+
+<script>
+    updatePostStats(
+        $(".post-view-count").map(function () { return this.dataset.postId }).get(),
+        function(id, count) { $(".post-view-count[data-post-id=" + id + "]").text("阅读(" + count + ")") },
+        function(id, count) { $(".post-comment-count[data-post-id=" + id + "]").text("评论(" + count + ")") },
+        function(id, count) { $(".post-digg-count[data-post-id=" + id + "]").text("推荐(" + count + ")") });
+</script>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+<div id="sidebar_c3"></div>
+                <div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                <script>loadBlogDefaultCalendar();</script>
+                <div id="leftcontentcontainer">
+                    <!-- begin:SingleColumn -->
+                    <div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+                    <!-- end:  SingleColumn -->
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <!--done-->
+Copyright &copy; 2021 我叫平沢唯
+<br /><span id="poweredby">Powered by .NET 5.0 on Kubernetes</span>
+
+    </div>
+</div>
+
+    <div id="page_end_html">
+        <script>console.log("顶部标题栏屏蔽开始；"); document.all.top_nav.style.display='none'; console.log("顶部标题栏屏蔽完成；");</script>
+    </div>
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8L-rpLgFVEJMgssCVvNUAjtXyGncUdY11HBESJOsqgALR0q6HIXmZUc1Zjos0dsiegLRQ40A4uAD4f-eyVv8bCAxeEqpa5X7mKWuaazUZ_FKiwbGOA0Ae7F6GpFZEUtZmCD7sdcBXkdimv0fojcNlWE" />
+</body>
+</html>
